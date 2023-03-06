@@ -7,6 +7,8 @@ RUN apt-get install -y build-essential libssl-dev manpages-dev zsh git curl nasm
 # Install Oh My Zsh
 RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
+RUN sh -c "$(curl -fsSL https://gef.blah.cat/sh)"
+
 WORKDIR /home
 
 CMD [ "/bin/zsh" ]
