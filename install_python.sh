@@ -1,18 +1,18 @@
 #!/bin/bash
 
 # Variables
-URL="https://downloads.haskell.org/ghc/9.6.1"
-TARBALL="ghc-9.6.1-x86_64-ubuntu20_04-linux.tar.xz"
-DIR="ghc-9.6.1-x86_64-unknown-linux"
+URL="https://www.python.org/ftp/python/3.11.2"
+TARBALL="Python-3.11.2.tar.xz"
+DIR="Python-3.11.2"
 TMP_DIR="/tmp"
-DEPENDENCIES=("wget" "tar" "gcc" "make")
+DEPENDENCIES=("wget" "tar" "make")
 
 # Colors
-RED='\033[0;31m'
-GREEN='\033[0;32m'
-YELLOW='\033[0;33m'
-BLUE='\033[0;34m'
-NC='\033[0m' # No Color
+RED="\033[0;31m"
+GREEN="\033[0;32m"
+YELLOW="\033[0;33m"
+BLUE="\033[0;34m"
+NC="\033[0m" # No Color
 
 # Functions
 check_dependencies() {
@@ -41,6 +41,10 @@ extract_tarball() {
 configure_and_install() {
     echo -e "${BLUE}Configuration...${NC}"
     (cd "${TMP_DIR}/${DIR}" && ./configure)
+    echo -e "${BLUE}Compilation...${NC}"
+    (cd "${TMP_DIR}/${DIR}" && make)
+    # echo -e "${BLUE}Tests...${NC}"
+    # (cd "${TMP_DIR}/${DIR}" && make test)
     echo -e "${BLUE}Installation...${NC}"
     (cd "${TMP_DIR}/${DIR}" && $SUDO make install)
 }
@@ -65,7 +69,7 @@ main() {
     extract_tarball
     configure_and_install
 
-    echo -e "${GREEN}All done!${NC}"
+    echo -e "${GREEN}Fait!${NC}"
 }
 
 main
