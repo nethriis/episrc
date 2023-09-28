@@ -1,0 +1,21 @@
+on:
+  push:
+    branches:
+      -main
+
+jobs:
+  test:
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.1.0
+
+      - name: Upgrading
+        run: apt-get update && apt-get upgrade -y
+
+      - name: Installing dependencies
+        run: apt-get install -y build-essential libssl-dev manpages-dev zsh git curl nasm gdb htop vim libsfml-dev haskell-platform
+
+      - name: Check GDB installer
+        run: chmod 755 install_gdb.sh && ./install_gdb.sh
+    
+    runs-on: ubuntu-latest
